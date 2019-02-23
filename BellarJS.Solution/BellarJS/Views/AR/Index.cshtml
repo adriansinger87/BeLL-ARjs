@@ -1,10 +1,27 @@
 ﻿@{
-    ViewData["Title"] = "AR";
+    ViewBag.Title = "AR";
+    Layout = "~/Views/Shared/_LayoutAR.cshtml"; ;
 }
 
 @section Scripts {
     <script src="~/js/_ar.js"></script>
 }
 
-<h2>AR</h2>
+<a-scene embedded=embedded arjs='trackingMethod: best;' antialias='true'>
 
+    <!-- Create a anchor to attach your augmented reality -->
+    <a-anchor hit-testing-enabled='true'>
+        <a-entity id="root-emtity" position='0 0 0' rotation="0 180 0" scale='1 1 1'>
+            <!-- allg. Text -->
+            <a-entity position='0 2 0' rotation='0 0 0' scale='2 2 2'>
+                <a-animation attribute='rotation' from='0 0 0' to='0 360 0' direction='linear' dur='5000'
+                             repeat='indefinite' easing='ease-in-out'></a-animation>
+                <a-text id="ar-label" position='0 0 0' side='double' value='AR-basierte Kontrolle' color='magenta' shadow='receive: true'></a-text>
+            </a-entity>
+        </a-entity>
+    </a-anchor>
+
+    <!-- Define a static camera -->
+    <a-camera-static />
+
+</a-scene>
